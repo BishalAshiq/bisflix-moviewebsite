@@ -1,4 +1,4 @@
-// components/MovieDetails.js
+
 export default function MovieDetails({ movie }) {
     return (
       <div className="movie-details">

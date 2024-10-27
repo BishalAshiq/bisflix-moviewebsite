@@ -21,6 +21,28 @@ body {
 }
 
 
+
+.navbar-nav-div{
+  /* border: solid green; */
+  padding: 24px 10px;
+  background-color: rgba(255, 0, 0, 0.301);
+}
+
+.navbar-nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+
+
+
+
+
+
+
+/* ********Movie Lists******* */
+
 .movie-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

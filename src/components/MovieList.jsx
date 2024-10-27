@@ -1,6 +1,6 @@
 "use client";
 import Image from 'next/image';
-import Link from 'next/link'; // Import Link
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 const MovieList = () => {
@@ -13,10 +13,7 @@ const MovieList = () => {
       try {
         const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
         const res = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`);
-        console.log("API Key:", process.env.NEXT_PUBLIC_TMDB_API_KEY);
-
         if (!res.ok) throw new Error('Failed to fetch movies');
-
         const data = await res.json();
         setMovies(data.results || []);
       } catch (error) {
@@ -25,24 +22,23 @@ const MovieList = () => {
         setLoading(false);
       }
     };
-
     fetchMovies();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (loading) return <>Loading...</>;
+  if (error) return <>Error: {error}</>;
 
   return (
     <div className="movie-grid">
-      {movies.length > 0 ? (
-        movies.map(movie => (
-          <div className="movie-card" key={movie.id}>
-            <Link href={`/movies/${movie.id}`}>
+      {movies.map(movie => (
+        <div className="movie-card" key={movie.id}>
+          <Link href={`/movies/${movie.id}`}>
+            <> 
               <Image
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}
-                width={500} // specify the width of the image
-                height={750} // specify the height of the image
+                width={500}
+                height={750}
                 className="movie-image"
               />
               <div className="movie-info">
@@ -52,12 +48,10 @@ const MovieList = () => {
                   <span>⭐ {movie.vote_average} / 10</span>
                 </div>
               </div>
-            </Link>
-          </div>
-        ))
-      ) : (
-        <p>No movies found.</p>
-      )}
+            </>
+          </Link>
+        </div>
+      ))}
     </div>
   );
 };
