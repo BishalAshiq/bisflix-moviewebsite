@@ -7,11 +7,11 @@ export default function Header() {
     <header>
       <nav>
         <Link href="/">
-          <a>Movie App</a>
+          <p>Movie App</p>
         </Link>
         <SearchBar />
         <Link href="/watchlist">
-          <a>Watchlist</a>
+          <p>Watchlist</p>
         </Link>
       </nav>
     </header>
