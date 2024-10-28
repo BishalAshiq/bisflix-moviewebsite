@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function SearchBar() {
@@ -7,10 +7,15 @@ export default function SearchBar() {
   const [suggestions, setSuggestions] = useState([]);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const searchContainerRef = useRef(null);
 
   const handleSearch = (event) => {
     event.preventDefault();
-    router.push(`/search?query=${query}`);
+    if (query) {
+      router.push(`/search?query=${query}`);
+      setQuery(''); // Clear input
+      setSuggestions([]); // Clear suggestions
+    }
   };
 
   const fetchSuggestions = async (searchQuery) => {
@@ -40,8 +45,22 @@ export default function SearchBar() {
     }
   }, [query]);
 
+  // Handle clicking outside the search bar to close suggestions
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchContainerRef.current && !searchContainerRef.current.contains(event.target)) {
+        setSuggestions([]);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="search-container">
+    <div className="search-container" ref={searchContainerRef}>
       <form onSubmit={handleSearch}>
         <input
           className='search-inp-color'
@@ -53,16 +72,16 @@ export default function SearchBar() {
         />
       </form>
       {loading ? (
-        <div className="loading">Loading...</div>
+        <div className="loading"></div>
       ) : suggestions.length > 0 && (
         <ul className="suggestions-list">
           {suggestions.map((movie) => (
             <li
               key={movie.id}
               onClick={() => {
-                setQuery(movie.title);
+                setQuery(''); // Clear input
                 router.push(`/movies/${movie.id}`);
-                setSuggestions([]);
+                setSuggestions([]); // Clear suggestions
               }}
             >
               {movie.title}

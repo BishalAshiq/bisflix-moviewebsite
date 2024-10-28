@@ -14,7 +14,10 @@ export default function Header() {
             <Image
               height={10}
               width={80}
-              src="/images/Netflix Logo 3d.png" />
+              src="/images/Netflix Logo 3d.png" 
+              alt=""
+              />
+              
           </Link>
           <SearchBar />
           <Link href="/watchlist">
