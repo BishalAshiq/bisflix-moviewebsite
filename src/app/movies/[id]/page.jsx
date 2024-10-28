@@ -9,27 +9,26 @@ const MovieDetailsPage = () => {
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [cast, setCast] = useState([]); // To store cast members
-  const [recommendations, setRecommendations] = useState([]); // To store recommendations
+  const [cast, setCast] = useState([]); 
+  const [recommendations, setRecommendations] = useState([]); 
 
   const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
-        // Fetch movie details including trailer
+
         const movieRes = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&append_to_response=videos`);
         if (!movieRes.ok) throw new Error('Failed to fetch movie details');
         const movieData = await movieRes.json();
         setMovie(movieData);
 
-        // Fetch cast
+   
         const castRes = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}`);
         if (!castRes.ok) throw new Error('Failed to fetch cast');
         const castData = await castRes.json();
         setCast(castData.cast);
 
-        // Fetch recommendations
         const recRes = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${apiKey}`);
         if (!recRes.ok) throw new Error('Failed to fetch recommendations');
         const recData = await recRes.json();
@@ -70,10 +69,10 @@ const MovieDetailsPage = () => {
       </div>
 
       <div>
-        {/* Cast Section */}
+      
         <h2>Cast</h2>
         <ul>
-          {cast.slice(0, 5).map(member => ( // Displaying top 5 cast members
+          {cast.slice(0, 5).map(member => ( 
             <li key={member.id}>
               <p>{member.name} as {member.character}</p>
             </li>
@@ -83,10 +82,10 @@ const MovieDetailsPage = () => {
 
 
       <div>
-        {/* Recommendations Section */}
+     
         <h2>Recommended Movies</h2>
         <div className="recommendations">
-          {recommendations.slice(0, 5).map(recMovie => ( // Displaying top 5 recommendations
+          {recommendations.slice(0, 5).map(recMovie => ( 
             <div key={recMovie.id}>
               <Image
                 src={`https://image.tmdb.org/t/p/w200${recMovie.poster_path}`}

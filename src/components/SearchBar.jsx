@@ -13,8 +13,8 @@ export default function SearchBar() {
     event.preventDefault();
     if (query) {
       router.push(`/search?query=${query}`);
-      setQuery(''); // Clear input
-      setSuggestions([]); // Clear suggestions
+      setQuery(''); 
+      setSuggestions([]); 
     }
   };
 
@@ -45,7 +45,6 @@ export default function SearchBar() {
     }
   }, [query]);
 
-  // Handle clicking outside the search bar to close suggestions
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (searchContainerRef.current && !searchContainerRef.current.contains(event.target)) {
@@ -79,9 +78,9 @@ export default function SearchBar() {
             <li
               key={movie.id}
               onClick={() => {
-                setQuery(''); // Clear input
+                setQuery(''); 
                 router.push(`/movies/${movie.id}`);
-                setSuggestions([]); // Clear suggestions
+                setSuggestions([]); 
               }}
             >
               {movie.title}

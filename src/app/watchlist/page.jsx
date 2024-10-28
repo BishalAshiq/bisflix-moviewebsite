@@ -1,8 +1,7 @@
-// pages/watchlist.js
+
 "use client";
 import { useEffect, useState } from 'react';
-import Watchlist from '../components/Watchlist'; // Corrected import path
-
+import Watchlist from '../../app/watchlist/page'; 
 export default function WatchlistPage() {
   const [watchlist, setWatchlist] = useState([]);
 
