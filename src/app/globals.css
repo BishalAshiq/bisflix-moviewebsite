@@ -20,6 +20,7 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 
@@ -51,6 +52,8 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
   cursor: pointer;
+  width: 95%;
+  height: 500px;
 }
 
 .movie-card:hover {
@@ -59,7 +62,7 @@ body {
 
 .movie-image {
   width: 100%;
-  height: auto;
+  height: 300px;
   display: block;
 }
 

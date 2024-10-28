@@ -56,9 +56,9 @@ const MovieList = () => {
     speed: 4000,
     autoplaySpeed: 5000,
     cssEase: "linear",
-    slidesToShow: 3,
+    slidesToShow: 5,
     slidesToScroll: 1,
-    arrows: false,
+    arrows: true,
     responsive: [
       {
         breakpoint: 1024,
@@ -85,7 +85,7 @@ const MovieList = () => {
   };
 
   return (
-    <div className="movie-slider">
+    <div className="">
       <Slider {...settings}>
         {movies.map(movie => (
           <MovieCard key={movie.id} movie={movie} onClick={handleMovieClick} />
