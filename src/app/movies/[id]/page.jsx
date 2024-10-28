@@ -1,12 +1,11 @@
-
 "use client";
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import ReactPlayer from 'react-player';
-import { useParams } from 'next/navigation'; 
+import { useParams } from 'next/navigation';
 
 const MovieDetailsPage = () => {
-  const { id } = useParams(); 
+  const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -38,7 +37,7 @@ const MovieDetailsPage = () => {
 
   return (
     <div>
-       {videoUrl ? (
+      {videoUrl ? (
         <ReactPlayer url={`https://www.youtube.com/watch?v=${videoUrl}`} controls width="100%" height="400px" />
       ) : (
         <p>No trailer available!</p>
@@ -52,7 +51,6 @@ const MovieDetailsPage = () => {
         width={200}
         height={350}
       />
-     
     </div>
   );
 };

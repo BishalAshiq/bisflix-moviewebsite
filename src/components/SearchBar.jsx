@@ -13,26 +13,30 @@ export default function SearchBar() {
     router.push(`/search?query=${query}`);
   };
 
-  // Function to fetch movie suggestions
   const fetchSuggestions = async (searchQuery) => {
-    const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY; // Use your API key
-    const res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchQuery}`);
-    const data = await res.json();
-    return data.results || [];
+    try {
+      const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+      const res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchQuery}`);
+      const data = await res.json();
+      return data.results || [];
+    } catch (error) {
+      console.error('Failed to fetch suggestions', error);
+      return [];
+    }
   };
 
   useEffect(() => {
-    if (query.length > 1) { // Trigger suggestions if query has more than 1 character
+    if (query.length > 1) {
       setLoading(true);
       const debounceFetch = setTimeout(async () => {
         const results = await fetchSuggestions(query);
         setSuggestions(results);
         setLoading(false);
-      }, 300); // Debounce delay
+      }, 300);
 
-      return () => clearTimeout(debounceFetch); // Cleanup
+      return () => clearTimeout(debounceFetch);
     } else {
-      setSuggestions([]); // Clear suggestions when input is empty or short
+      setSuggestions([]);
     }
   }, [query]);
 
@@ -47,27 +51,25 @@ export default function SearchBar() {
           placeholder="Search for a movie..."
           autoComplete="off"
         />
-        {/* <button type="submit">Search</button> */}
       </form>
       {loading ? (
-        <div>
-        
-
-        </div>
+        <div className="loading">Loading...</div>
       ) : suggestions.length > 0 && (
         <ul className="suggestions-list">
           {suggestions.map((movie) => (
-            <li key={movie.id} onClick={() => {
-              setQuery(movie.title); // Set input value to the selected movie title
-              router.push(`/search?query=${movie.title}`); // Redirect to search results
-              setSuggestions([]); // Clear suggestions
-            }}>
+            <li
+              key={movie.id}
+              onClick={() => {
+                setQuery(movie.title);
+                router.push(`/movies/${movie.id}`);
+                setSuggestions([]);
+              }}
+            >
               {movie.title}
             </li>
           ))}
         </ul>
       )}
-
     </div>
   );
 }
