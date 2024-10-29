@@ -1,7 +1,7 @@
 
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "../components/shared/Navbar/Header.jsx";
+import Footer from "../components/shared/Footer/Footer.jsx";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
