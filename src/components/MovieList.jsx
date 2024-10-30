@@ -21,6 +21,7 @@ const MovieList = () => {
     const fetchMovies = async () => {
       try {
         const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+        
         const res = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`);
         if (!res.ok) throw new Error('Failed to fetch movies');
         const data = await res.json();
