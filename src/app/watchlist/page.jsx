@@ -1,19 +1,22 @@
-// pages/watchlist.js
 "use client"
-import { useEffect, useState } from 'react';
-import Watchlist from '../watchlist/page';
+import MovieCard from '@/components/MovieCard';
+import { useSelector } from 'react-redux';
+// import MovieCard from './MovieCard';
 
-export default function WatchlistPage() {
-  const [watchlist, setWatchlist] = useState([]);
+const Watchlist = () => {
+  const watchlist = useSelector((state) => state.movies.watchlist);
 
-  useEffect(() => {
-    const savedWatchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
-    setWatchlist(savedWatchlist);
-  }, []);
+  if (watchlist.length === 0) {
+    return <p>Your watchlist is empty.</p>;
+  }
 
   return (
     <div>
-      <Watchlist watchlist={watchlist} />
+      {watchlist.map((movie) => (
+        <MovieCard key={movie.id} movie={movie} />
+      ))}
     </div>
   );
-}
+};
+
+export default Watchlist;

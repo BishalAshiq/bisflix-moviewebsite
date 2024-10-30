@@ -4,12 +4,17 @@ import MovieCard from './MovieCard';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { setMovies, setLoading, setError } from '../redux/slices/movieSlice';
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [watchlist, setWatchlist] = useState([]);
+
+  const dispatch = useDispatch();
+  // const { loading, error } = useSelector((state) => state.movies);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -26,7 +31,7 @@ const MovieList = () => {
       }
     };
     fetchMovies();
-  }, []);
+  }, [dispatch]);
 
   // Load watchlist from localStorage
   useEffect(() => {
