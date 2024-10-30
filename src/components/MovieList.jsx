@@ -1,4 +1,5 @@
 // components/MovieList.jsx
+"use client";
 import { useEffect, useState } from 'react';
 import MovieCard from './MovieCard';
 import Slider from 'react-slick';
