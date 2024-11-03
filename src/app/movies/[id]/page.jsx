@@ -91,14 +91,14 @@ const MovieDetailsPage = () => {
           <ul className='cast-items-ul'>
             {cast.slice(0, 5).map(member => (
               <li key={member.id}>
-                <p>{member.name} as {member.character}</p>
+                <p>{member.name} as {member.character},</p>
               </li>
             ))}
           </ul>
         </div>
 
         {/* Recommendations Section */}
-        <div>
+        <div className="recommendations-full-div">
           <h2>Recommended Movies</h2>
           <div className="recommendations-div">
             {recommendations.slice(0, 5).map(recMovie => (

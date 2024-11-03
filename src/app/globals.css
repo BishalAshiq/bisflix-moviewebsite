@@ -173,12 +173,15 @@ border-radius: 10px;
   text-align: center;
   justify-content: center;
 }
+.recommendations-full-div{
+  margin: 20px 0 20px 0;
+}
 .recommendations-div{
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
-  margin: 40px;
+  margin: 20px;
 }
 .recommendations-map{
   display: flex;
