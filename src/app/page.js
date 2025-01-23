@@ -9,7 +9,7 @@ const Home = () => {
     <Provider store={store}>
       <div>
         <div className='Popular-mov-texts-div'>
-          <h1 className='Popular-mov-texts'>Popular Movies</h1>
+          <h1 className='Popular-mov-texts'>New this week</h1>
           <MovieList />
         </div>
       </div>

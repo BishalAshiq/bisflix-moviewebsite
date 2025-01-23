@@ -46,14 +46,14 @@ body {
 
 /* ********Movie Lists******* */
 .movie-card {
-  background-color: #fff;
+  /* background-color: #fff; */
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
   cursor: pointer;
-  width: 95%;
-  height: 500px;
+  width: 200px;
+  /* height: 500px; */
 }
 
 .movie-card:hover {

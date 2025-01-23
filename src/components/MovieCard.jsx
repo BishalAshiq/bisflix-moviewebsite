@@ -10,16 +10,16 @@ const MovieCard = ({ movie }) => {
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           alt={movie.title}
           width={300}
-          height={450}
+          height={350}
           className="movie-image"
         />
-        <div className="movie-info">
+        {/* <div className="movie-info">
           <h2 className="movie-title">{movie.title}</h2>
           <p className="movie-description">{movie.overview.slice(0, 100)}...</p>
           <div className="movie-rating">
             <span>⭐ {movie.vote_average} / 10</span>
           </div>
-        </div>
+        </div> */}
       </Link>
       
     </div>
