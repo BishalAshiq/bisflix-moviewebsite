@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import ReactPlayer from 'react-player';
 import { useParams } from 'next/navigation';
+import Link from 'next/link';
 
 const MovieDetailsPage = () => {
   const { id } = useParams();
@@ -18,7 +19,9 @@ const MovieDetailsPage = () => {
     const fetchMovieDetails = async () => {
       try {
       
-        const movieRes = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&append_to_response=videos`);
+        const movieRes = await fetch(
+          `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&append_to_response=videos`
+        );
         if (!movieRes.ok) throw new Error('Failed to fetch movie details');
         const movieData = await movieRes.json();
         setMovie(movieData);
@@ -71,7 +74,7 @@ const MovieDetailsPage = () => {
             height={350}
           />
 
-          {/* Additional Movie Info */}
+       
           <div>
             {/* Movie Details */}
             <h1 className='Movie-details-tag'>{movie.title}</h1>
@@ -103,13 +106,17 @@ const MovieDetailsPage = () => {
           <div className="recommendations-div">
             {recommendations.slice(0, 5).map(recMovie => (
               <div key={recMovie.id} className="recommendations-map">
-                <Image
-                  src={`https://image.tmdb.org/t/p/w200${recMovie.poster_path}`}
-                  alt={recMovie.title}
-                  width={100}
-                  height={150}
-                />
-                <p>{recMovie.title}</p>
+                 <Link href={`/movie/${recMovie.id}`}>
+                  <div>
+                    <Image
+                      src={`https://image.tmdb.org/t/p/w200${recMovie.poster_path}`}
+                      alt={recMovie.title}
+                      width={100}
+                      height={150}
+                    />
+                    <p>{recMovie.title}</p>
+                  </div>
+                </Link>
               </div>
             ))}
           </div>
