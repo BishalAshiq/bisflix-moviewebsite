@@ -107,14 +107,14 @@ const MovieDetailsPage = () => {
             {recommendations.slice(0, 5).map(recMovie => (
               <div key={recMovie.id} className="recommendations-map">
                  <Link href={`/movie/${recMovie.id}`}>
-                  <div>
+                  <div className='recommendations-ImageDiv'>
                     <Image
                       src={`https://image.tmdb.org/t/p/w200${recMovie.poster_path}`}
                       alt={recMovie.title}
                       width={100}
                       height={150}
                     />
-                    <p>{recMovie.title}</p>
+                    <p className='recommendations-Imageptext'>{recMovie.title}</p>
                   </div>
                 </Link>
               </div>

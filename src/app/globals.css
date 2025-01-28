@@ -153,8 +153,8 @@ border-radius: 10px;
 .Movie-details-div{
   display: flex;
   padding: 0 20px 0 0;
-  align-items: end;
-  justify-content: end;
+  align-items: start;
+  justify-content: center;
   text-align: start;
   flex-direction: column;
 }
@@ -182,6 +182,23 @@ border-radius: 10px;
   align-items: center;
   justify-content: space-around;
   margin: 20px;
+}
+.recommendations-ImageDiv{
+  /* border: 1px solid white; */
+  width: 200px;
+  background: rgb(29,29,29);
+background: linear-gradient(90deg, rgba(29,29,29,0.9808298319327731) 0%, rgba(237,38,0,1) 48%, rgba(0,0,0,1) 100%);
+  display: grid;
+  place-items: center;
+  /* gap: 10px; */
+  height: 240px;
+  /* padding: 20px; */
+}
+.recommendations-ImageDiv:hover{
+
+}
+.recommendations-Imageptext{
+  font-size: .9rem;
 }
 .recommendations-map{
   display: flex;
